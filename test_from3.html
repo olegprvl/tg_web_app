@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Расчёт растаможки</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        body { font-family: sans-serif; padding: 20px;}
+        input, button { width: 100%; padding: 12px; margin: 10px 0;}
+        #result {
+            background: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<h2>Данные для расчёта</h2>
+
+<input id="year" type="number" placeholder="Год выпуска">
+<input id="engine" type="number" placeholder="Объём двигателя (см³)">
+<input id="price" type="number" placeholder="Стоимость (EUR)">
+<input id="power" type="number" placeholder="Мощность (л.с.)">
+
+<button id="calcBtn">Рассчитать</button>
+
+<div id="result"></div>
+
+<script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    document.getElementById("calcBtn").onclick = async () => {
+        const payload = {
+            year: +document.getElementById("year").value,
+            engine: +document.getElementById("engine").value,
+            price: +document.getElementById("price").value,
+            power: +document.getElementById("power").value
+        };
+
+        // API calc
+        try {
+            const resp = await fetch("https://example.com/api/calc", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload)
+            });
+
+            const data = await resp.json();
+
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").innerHTML = `
+                <h3>Результат</h3>
+                Пошлина: <b>${data.duty}</b><br>
+                Акциз: <b>${data.excise}</b><br>
+                НДС: <b>${data.vat}</b><br>
+                <br>
+                <b>Итого: ${data.total}</b>
+            `;
+
+        } catch (e) {
+            alert("Ошибка API: " + e);
+        }
+    };
+</script>
+</body>
+</html>

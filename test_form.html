@@ -18,21 +18,21 @@ button:hover {opacity:0.9;}
 <button id="send">Отправить боту</button>
 
 <script>
-// const tg = window.Telegram?.WebApp;
-// if (!tg) alert("Откройте WebApp внутри Telegram!");
+    document.addEventListener("DOMContentLoaded", () => {
+        const tg = window.Telegram?.WebApp;
+        if (!tg) {
+            console.log("Не внутри Telegram WebApp");
+            return;
+        }
+    
+        tg.expand();
+    
+        // Ставим фокус на input
+        const input = document.getElementById("test_input");
+        if (input) input.focus();
+    });
 
-// document.getElementById("send").onclick = () => {
-//     const data = {text: document.getElementById("test_input").value};
-//     tg.sendData(JSON.stringify(data));
-//     tg.close(); // закрываем WebApp после отправки
-// };
-
-const tg = window.Telegram?.WebApp;
-if (!tg) {
-    alert("Откройте WebApp только внутри Telegram!");
-} else {
-    console.log("WebApp готов к работе", tg);
-}    
+    
 </script>
 </body>
 </html>

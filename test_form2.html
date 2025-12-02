@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Расчёт растаможки</title>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input { width:100%; padding:10px; margin:10px 0; }
+        button { width:100%; padding:15px; background:#0a79f3; color:#fff; border:0; border-radius:8px; }
+    </style>
+</head>
+<body>
+
+<h2>Введите данные</h2>
+
+<input id="year" type="number" placeholder="Год выпуска">
+<input id="engine" type="number" placeholder="Объём двигателя (см³)">
+<input id="price" type="number" placeholder="Стоимость (EUR)">
+<input id="power" type="number" placeholder="Мощность (л.с.)">
+
+<button id="send">Отправить</button>
+
+<script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    document.getElementById("send").onclick = () => {
+        let data = {
+            year: document.getElementById("year").value,
+            engine: document.getElementById("engine").value,
+            price: document.getElementById("price").value,
+            power: document.getElementById("power").value,
+        };
+
+        tg.sendData(JSON.stringify(data));  // отправка в бота
+    };
+</script>
+
+</body>
+</html>

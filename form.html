@@ -7,15 +7,14 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: var(--tg-theme-bg-color);
-        color: var(--tg-theme-text-color);
         margin: 0;
         padding: 15px;
+        font-family: Arial, sans-serif;
+        transition: background 0.3s, color 0.3s;
     }
 
     .card {
-        background: var(--tg-theme-secondary-bg-color);
+        background: inherit;
         padding: 15px;
         border-radius: 12px;
         margin-bottom: 20px;
@@ -23,37 +22,49 @@
     }
 
     label {
-        font-size: 15px;
-        margin-bottom: 6px;
         display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
     }
 
     input, select {
         width: 100%;
         padding: 12px;
         border-radius: 8px;
-        border: 1px solid #ccc;
+        border: 1px solid #888;
         margin-bottom: 15px;
         font-size: 16px;
-        background: var(--tg-theme-bg-color);
-        color: var(--tg-theme-text-color);
+        background: inherit;
+        color: inherit;
     }
 
     button {
         width: 100%;
         padding: 14px;
-        background: var(--tg-theme-button-color, #115193);
-        color: var(--tg-theme-button-text-color, #fff);
+        background-color: #007bff; /* синий цвет */
+        color: #fff;
         border: none;
         border-radius: 10px;
         font-size: 18px;
         cursor: pointer;
+        transition: opacity 0.2s;
     }
 
     button:hover {
         opacity: 0.9;
     }
 
+    /* светлая тема по умолчанию */
+    body.light {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    /* тёмная тема */
+    body.dark {
+        background: #1e1e1e;
+        color: #ffffff;
+    }
 </style>
 </head>
 <body>
@@ -61,7 +72,6 @@
 <h2>Растаможка автомобиля</h2>
 
 <div class="card">
-
     <label>Год выпуска</label>
     <select id="year"></select>
 
@@ -105,9 +115,16 @@
 
 <script>
     const tg = window.Telegram.WebApp;
-    tg.expand(); // разворачивает WebApp
+    tg.expand(); // развернуть WebApp
 
-    // генерируем список годов
+    // настройка темы Telegram
+    if (tg.colorScheme === "dark") {
+        document.body.classList.add("dark");
+    } else {
+        document.body.classList.add("light");
+    }
+
+    // заполнение лет
     const yearSelect = document.getElementById("year");
     const yearCurrent = new Date().getFullYear();
     for (let y = yearCurrent; y >= 1990; y--) {
@@ -117,8 +134,8 @@
         yearSelect.appendChild(opt);
     }
 
+    // отправка данных боту
     document.getElementById("submit").onclick = () => {
-
         const data = {
             year: document.getElementById("year").value,
             engine_t: document.getElementById("engine_t").value,

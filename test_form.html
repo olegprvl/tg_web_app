@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест WebApp</title>
+<style>
+body {margin:0; padding:20px; font-family:Arial,sans-serif; text-align:center;}
+input {padding:10px; width:80%; margin:10px 0; font-size:16px;}
+button {padding:12px 20px; font-size:18px; background:#007bff; color:#fff; border:none; border-radius:8px; cursor:pointer;}
+button:hover {opacity:0.9;}
+</style>
+</head>
+<body>
+<h2>Тест WebApp</h2>
+<input id="test_input" placeholder="Введите что-то">
+<br>
+<button id="send">Отправить боту</button>
+
+<script>
+const tg = window.Telegram?.WebApp;
+if (!tg) alert("Откройте WebApp внутри Telegram!");
+
+document.getElementById("send").onclick = () => {
+    const data = {text: document.getElementById("test_input").value};
+    tg.sendData(JSON.stringify(data));
+    tg.close(); // закрываем WebApp после отправки
+};
+</script>
+</body>
+</html>

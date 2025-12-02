@@ -6,71 +6,20 @@
 <title>Растаможка авто</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 15px;
-        font-family: Arial, sans-serif;
-        transition: background 0.3s, color 0.3s;
-    }
+body {margin:0; padding:15px; font-family:Arial,sans-serif; transition: background 0.3s, color 0.3s;}
+body.light {background:#fff; color:#000;}
+body.dark {background:#1e1e1e; color:#fff;}
 
-    .card {
-        background: inherit;
-        padding: 15px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.15);
-    }
-
-    label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 15px;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 12px;
-        border-radius: 8px;
-        border: 1px solid #888;
-        margin-bottom: 15px;
-        font-size: 16px;
-        background: inherit;
-        color: inherit;
-    }
-
-    button {
-        width: 100%;
-        padding: 14px;
-        background-color: #007bff; /* синий цвет */
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: opacity 0.2s;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    /* светлая тема по умолчанию */
-    body.light {
-        background: #ffffff;
-        color: #000000;
-    }
-
-    /* тёмная тема */
-    body.dark {
-        background: #1e1e1e;
-        color: #ffffff;
-    }
+.card {background:inherit; padding:15px; border-radius:12px; margin-bottom:20px;}
+label {display:block; margin-bottom:6px; font-size:15px;}
+input, select {width:100%; padding:12px; border-radius:8px; border:1px solid #888; margin-bottom:15px; font-size:16px; background:inherit; color:inherit;}
+button {width:100%; padding:14px; background-color:#007bff; color:#fff; border:none; border-radius:10px; font-size:18px; cursor:pointer; transition: opacity 0.2s;}
+button:hover {opacity:0.9;}
 </style>
 </head>
 <body>
 
 <h2>Растаможка автомобиля</h2>
-
 <div class="card">
     <label>Год выпуска</label>
     <select id="year"></select>
@@ -114,40 +63,38 @@
 </div>
 
 <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand(); // развернуть WebApp
+const tg = window.Telegram.WebApp;
+tg.expand();
 
-    // настройка темы Telegram
-    if (tg.colorScheme === "dark") {
-        document.body.classList.add("dark");
-    } else {
-        document.body.classList.add("light");
-    }
+// тема Telegram
+if (tg.colorScheme === "dark") { document.body.classList.add("dark"); } 
+else { document.body.classList.add("light"); }
 
-    // заполнение лет
-    const yearSelect = document.getElementById("year");
-    const yearCurrent = new Date().getFullYear();
-    for (let y = yearCurrent; y >= 1990; y--) {
-        const opt = document.createElement("option");
-        opt.value = y;
-        opt.textContent = y;
-        yearSelect.appendChild(opt);
-    }
+// заполнение годов
+const yearSelect = document.getElementById("year");
+const yearCurrent = new Date().getFullYear();
+for (let y = yearCurrent; y >= 1990; y--) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    yearSelect.appendChild(opt);
+}
 
-    // отправка данных боту
-    document.getElementById("submit").onclick = () => {
-        const data = {
-            year: document.getElementById("year").value,
-            engine_t: document.getElementById("engine_t").value,
-            engine_v: document.getElementById("engine_v").value,
-            price: document.getElementById("price").value,
-            currency: document.getElementById("currency").value,
-            country: document.getElementById("country").value
-        };
-
-        tg.sendData(JSON.stringify(data));
-        tg.close();
+// отправка данных боту
+document.getElementById("submit").onclick = () => {
+    const data = {
+        year: document.getElementById("year").value,
+        engine_t: document.getElementById("engine_t").value,
+        engine_v: document.getElementById("engine_v").value,
+        price: document.getElementById("price").value,
+        currency: document.getElementById("currency").value,
+        country: document.getElementById("country").value
     };
+
+    console.log("Отправляем данные:", data);
+    tg.sendData(JSON.stringify(data));
+    tg.close();
+};
 </script>
 
 </body>

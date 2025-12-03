@@ -35,7 +35,8 @@
             power: document.getElementById("power").value,
         };
 
-        tg.sendData(JSON.stringify(data));  // отправка в бота
+        tg.sendData(JSON.stringify(data));
+        tg.close();
     };
 </script>
 

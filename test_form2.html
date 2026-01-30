@@ -13,8 +13,8 @@
 <body>
 
 <h2>Введите данные</h2>
-
-<input id="year" type="number" placeholder="Год выпуска">
+<input id="face" type="number" placeholder="Физ. лицо">
+<input id="age" type="number" placeholder="Возраст авто">
 <input id="engine" type="number" placeholder="Объём двигателя (см³)">
 <input id="price" type="number" placeholder="Стоимость (EUR)">
 <input id="power" type="number" placeholder="Мощность (л.с.)">
@@ -31,6 +31,7 @@
             engine: document.getElementById("engine").value,
             price: document.getElementById("price").value,
             power: document.getElementById("power").value,
+            face: document.getElementById("face").value,
         };
 
         tg.sendData(JSON.stringify(data));

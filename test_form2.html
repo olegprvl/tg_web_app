@@ -13,7 +13,17 @@
 <body>
 
 <h2>Введите данные</h2>
-<input id="face" type="text" placeholder="Физ. лицо">
+<p>
+				<label><input type="radio" name="face" value="nat" checked="on" onclick="this.form.xface.value=this.value;">физическое лицо (ЕТС)</label>
+				<br>
+				<label><input type="radio" name="face" value="jur" onclick="this.form.xface.value=this.value;">юридическое лицо (СТП)</label>
+			</p>    
+    
+<label>Тип владельца</label>
+<select id="owner">
+  <option value="person">Физическое лицо</option>
+  <option value="company">Юридическое лицо</option>
+</select>
 <input id="age" type="number" placeholder="Возраст авто">
 <input id="engine" type="number" placeholder="Объём двигателя (см³)">
 <input id="price" type="number" placeholder="Стоимость (EUR)">

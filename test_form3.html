@@ -67,7 +67,7 @@
 
   <div class="field">
     <label>Возраст</label>
-    <select id="year">
+    <select id="age">
       <option value="3">менее 3-х лет</option>
       <option value="35" selected>3-5 лет</option>
       <option value="57">5-7 лет</option>
@@ -77,7 +77,7 @@
 
   <div class="field">
     <label>Объём двигателя (см³)</label>
-    <input type="number" id="engine" placeholder="Например: 1998">
+    <input type="number" id="volume" placeholder="Например: 1998">
   </div>
 
   <div class="field">
@@ -87,7 +87,7 @@
 
   <div class="field">
     <label>Тип двигателя</label>
-    <select id="fuel">
+    <select id="engine">
       <option value="petrol">Бензин</option>
       <option value="diesel">Дизель</option>
       <option value="electric">Электро</option>
@@ -97,7 +97,7 @@
 
   <div class="field">
     <label>Стоимость авто</label>
-    <input type="number" id="price" placeholder="Например: 15000">
+    <input type="number" id="cost" placeholder="Например: 15000">
   </div>
 
   <div class="field">
@@ -127,9 +127,10 @@
 
     document.getElementById("send").onclick = () => {
         let data = {
-            year: document.getElementById("year").value,
+            age: document.getElementById("age").value,
+            volume: document.getElementById("volume").value,
             engine: document.getElementById("engine").value,
-            price: document.getElementById("price").value,
+            cost: document.getElementById("cost").value,
             power: document.getElementById("power").value,
             face: document.getElementById("face").value,
             currency: document.getElementById("currency").value,

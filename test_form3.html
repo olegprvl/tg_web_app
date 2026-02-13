@@ -75,20 +75,6 @@
       display: none;
   }
 </style>
-    
-<script>
-  function toggleHybrid() {
-    const fuel = document.getElementById("fuel").value;
-    const block = document.getElementById("hybridBlock");
-
-    if (fuel === "petrol_electric") {
-      block.style.display = "block";
-    } else {
-      block.style.display = "none";
-    }
-  }
-</script>
-    
 </head>
 
 <body>
@@ -157,7 +143,7 @@
   <div class="row">
       <div class="field cost">
         <label>Стоимость</label>
-        <input type="number" id="cost" placeholder="Напр. 15000">
+        <input type="number" id="cost" placeholder="Напимер: 15000">
       </div>
 
       <div class="field currency">
@@ -208,6 +194,17 @@
         tg.sendData(JSON.stringify(data));
         tg.close();
     };
+
+    function toggleHybrid() {
+        const fuel = document.getElementById("fuel").value;
+        const block = document.getElementById("hybridBlock");
+    
+        if (fuel === "petrol_electric") {
+          block.style.display = "block";
+        } else {
+          block.style.display = "none";
+        }
+    }
 </script>
 </body>
 </html>

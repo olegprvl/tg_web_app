@@ -183,10 +183,15 @@
             age: document.getElementById("age").value,
             volume: document.getElementById("volume").value,
             engine: document.getElementById("engine").value,
+            hybrid_type: document.getElementById("hybrid_type").value,
+            hybrid_power: document.getElementById("hybrid_power").value,
+                
             cost: document.getElementById("cost").value,
             power: document.getElementById("power").value,
+            power_edizm: document.getElementById("power_edizm").value,
             face: document.getElementById("face").value,
             currency: document.getElementById("currency").value,
+            
         };
 
         tg.sendData(JSON.stringify(data));

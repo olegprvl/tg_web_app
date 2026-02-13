@@ -101,8 +101,18 @@
   </div>
 
   <div class="field">
+    <label>Тип двигателя</label>
+    <select id="engine" onchange="onEngineChange()">
+      <option value="petrol">Бензин</option>
+      <option value="diesel">Дизель</option>
+      <option value="electric">Электро</option>
+      <option value="petrol_electric">Гибрид</option>
+    </select>
+  </div>
+    
+  <div class="field" id="volumeBlock">
     <label>Объём двигателя (см³)</label>
-    <input type="number" id="volume" placeholder="Например: 1998">
+    <input type="number" id="volume" step="100" placeholder="Например: 1998">
   </div>
 
   <div class="field">
@@ -110,15 +120,8 @@
     <input type="number" id="power" placeholder="Например: 165">
   </div>  
 
-  <div class="field">
-    <label>Тип двигателя</label>
-    <select id="engine" onchange="toggleHybrid()">
-      <option value="petrol">Бензин</option>
-      <option value="diesel">Дизель</option>
-      <option value="electric">Электро</option>
-      <option value="petrol_electric">Гибрид</option>
-    </select>
-  </div>
+
+
 <!-- Скрытый блок гибрида -->
 <div id="hybridBlock">
 
@@ -126,15 +129,15 @@
     <label>Тип гибрида</label>
     <select id="hybrid_type">
       <option value="serial">Последовательный</option>
-      <option value="parallel">Непоследовательный</option>
+      <option value="parallel">Другой</option>
     </select>
   </div>
 
   <div class="field">
     <label>Соотношение мощностей</label>
     <select id="hybrid_power">
-      <option value="ice_gt_ev">ДВС > ЭД</option>
       <option value="ev_gt_ice">ЭД > ДВС</option>
+      <option value="ice_gt_ev">ДВС > ЭД</option>
     </select>
   </div>
 
@@ -195,15 +198,27 @@
         tg.close();
     };
 
-    function toggleHybrid() {
+    function onEngineChange() {
         const engine = document.getElementById("engine").value;
-        const block = document.getElementById("hybridBlock");
+        const hybridBlock = document.getElementById("hybridBlock");
+        const volumeBlock = document.getElementById("volumeBlock");
+    
+        // Сброс
+        volumeBlock.style.display = "none";
+        hybridBlock.style.display = "none";
+    
+        if (fuel === "electric") {
+          // Электро — ничего не показываем
+          return;
+        }
+    
+        // Для ДВС и гибрида показываем объём
+        volumeBlock.style.display = "block";
     
         if (engine === "petrol_electric") {
-          block.style.display = "block";
-        } else {
-          block.style.display = "none";
+          hybridBlock.style.display = "block";
         }
+
     }
 </script>
 </body>

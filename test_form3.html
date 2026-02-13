@@ -115,38 +115,47 @@
     <input type="number" id="volume" step="100" placeholder="Например: 1998">
   </div>
 
-  <div class="field">
-    <label>Мощность (кВт)</label>
-    <input type="number" id="power" placeholder="Например: 165">
+  <div class="row">  
+      <div class="field">
+        <label>Мощность</label>
+        <input type="number" id="power" placeholder="Например: 165">
+      </div>  
+      <div class="field">
+        <label>кВт или л.с.</label>
+        <select id="power_edizm">
+          <option value="kvt">кВт</option>
+          <option value="ls">л.с.</option>
+        </select>
+      </div>  
   </div>  
 
 
 
 <!-- Скрытый блок гибрида -->
 <div id="hybridBlock">
-
-  <div class="field">
-    <label>Тип гибрида</label>
-    <select id="hybrid_type">
-      <option value="serial">Последовательный</option>
-      <option value="parallel">Другой</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <label>Соотношение мощностей</label>
-    <select id="hybrid_power">
-      <option value="ev_gt_ice">ЭД > ДВС</option>
-      <option value="ice_gt_ev">ДВС > ЭД</option>
-    </select>
-  </div>
-
+  <div class="row">  
+      <div class="field">
+        <label>Тип гибрида</label>
+        <select id="hybrid_type">
+          <option value="serial">Последовательный</option>
+          <option value="parallel">Другой</option>
+        </select>
+      </div>
+    
+      <div class="field">
+        <label>Соотношение мощностей</label>
+        <select id="hybrid_power">
+          <option value="ev_gt_ice">ЭД > ДВС</option>
+          <option value="ice_gt_ev">ДВС > ЭД</option>
+        </select>
+      </div>
+    </div>
 </div>
     
   <div class="row">
       <div class="field cost">
         <label>Стоимость</label>
-        <input type="number" id="cost" placeholder=3500000">
+        <input type="number" id="cost" placeholder="Например: 3500000">
       </div>
 
       <div class="field currency">

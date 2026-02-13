@@ -23,17 +23,18 @@
     text-align: center;
   }
 
-.row {
-  display: flex;
-  gap: 8px;
-}
-    .field.cost {
-  flex: 2;
-}
+  .row {
+    display: flex;
+    gap: 8px;
+    }
+    
+  .field.big {
+    flex: 2;
+    }
 
-.field.currency {
-  flex: 1;
-}
+  .field.small {
+    flex: 1;
+  }
     
   .field {
     margin-bottom: 10px;
@@ -116,12 +117,12 @@
   </div>
 
   <div class="row">  
-      <div class="field">
+      <div class="field big">
         <label>Мощность</label>
         <input type="number" id="power" placeholder="Например: 165">
       </div>  
-      <div class="field">
-        <label>кВт или л.с.</label>
+      <div class="field small">
+        <!-- <label>кВт или л.с.</label> -->
         <select id="power_edizm">
           <option value="kvt">кВт</option>
           <option value="ls">л.с.</option>
@@ -134,7 +135,7 @@
 <!-- Скрытый блок гибрида -->
 <div id="hybridBlock">
   <div class="row">  
-      <div class="field">
+      <div class="field big">
         <label>Тип гибрида</label>
         <select id="hybrid_type">
           <option value="serial">Последовательный</option>
@@ -142,7 +143,7 @@
         </select>
       </div>
     
-      <div class="field">
+      <div class="field" small>
         <label>Соотношение мощностей</label>
         <select id="hybrid_power">
           <option value="ev_gt_ice">ЭД > ДВС</option>
@@ -153,12 +154,12 @@
 </div>
     
   <div class="row">
-      <div class="field cost">
+      <div class="field big">
         <label>Стоимость</label>
         <input type="number" id="cost" placeholder="Например: 3500000">
       </div>
 
-      <div class="field currency">
+      <div class="field small">
         <label>Валюта</label>
         <select id="currency">
           <option value="643">RUB</option>
